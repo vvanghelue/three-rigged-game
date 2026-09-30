@@ -1,0 +1,56 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #111; font-family: system-ui, sans-serif; color: #fff; user-select: none; }
+canvas { display: block; }
+
+#hud { position: fixed; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; pointer-events: none; z-index: 5; }
+.bar-wrap { display: flex; align-items: center; gap: 8px; }
+.label { font-weight: 800; letter-spacing: 1px; text-shadow: 0 2px 4px #000; }
+.bar { width: 280px; height: 18px; background: #0008; border: 2px solid #fff; border-radius: 10px; overflow: hidden; }
+#hp-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #ff3b3b, #ffb13b); transition: width .15s; }
+#stats { font-weight: 700; font-size: 18px; text-shadow: 0 2px 4px #000; }
+#mode { position: fixed; left: 16px; bottom: 16px; padding: 8px 14px; border-radius: 10px; background: #0008; border: 2px solid #ffd040; font-weight: 700; font-size: 18px; text-shadow: 0 2px 4px #000; pointer-events: none; z-index: 5; }
+#mode.gun { border-color: #9fd0ff; }
+#grenades { position: fixed; left: 16px; bottom: 64px; padding: 4px 12px; border-radius: 8px; background: #0008; border: 2px solid #ff7040; font-weight: 700; font-size: 14px; text-shadow: 0 2px 4px #000; pointer-events: none; z-index: 5; }
+#grenades.empty { opacity: 0.45; }
+
+#perf { position: fixed; right: 12px; bottom: 28px; display: flex; gap: 2px; opacity: .9; pointer-events: none; z-index: 5; }
+#perf[hidden] { display: none; }
+#perf canvas { display: block; }
+#labels { position: fixed; inset: 0; pointer-events: none; z-index: 4; }
+#crosshair { position: fixed; left: 50%; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; pointer-events: none; z-index: 5; display: none; }
+#crosshair.show { display: block; }
+#crosshair::before, #crosshair::after { content: ''; position: absolute; background: #fffc; box-shadow: 0 0 2px #000; }
+#crosshair::before { left: 8px; top: 0; width: 2px; height: 18px; }
+#crosshair::after { top: 8px; left: 0; height: 2px; width: 18px; }
+#crosshair { transition: transform .12s; }
+#crosshair.aim { transform: scale(0.6); }
+#crosshair.aim::before, #crosshair.aim::after { background: #9fd0ff; }
+.ehp { position: absolute; width: 50px; height: 6px; background: #000a; border: 1px solid #fff8; border-radius: 3px; transform: translate(-50%, -50%); overflow: hidden; }
+.ehp > div { height: 100%; background: #ff4040; }
+.dmg { position: absolute; font-weight: 900; font-size: 22px; color: #ffe14d; text-shadow: 0 2px 0 #000, 0 0 6px #000; transform: translate(-50%, -50%); animation: rise .8s ease-out forwards; }
+.dmg.player { color: #ff5050; }
+.dmg.crit { color: #ff4040; font-size: 30px; }
+.dmg.crit::after { content: ' ✖'; font-size: 20px; }
+@keyframes rise { from { opacity: 1; margin-top: 0; } to { opacity: 0; margin-top: -50px; } }
+
+#hitmarker { position: fixed; left: 50%; top: 50%; width: 22px; height: 22px; margin: -11px 0 0 -11px; pointer-events: none; z-index: 5; opacity: 0; }
+#hitmarker::before, #hitmarker::after { content: ''; position: absolute; left: 10px; top: 0; width: 2px; height: 22px; background: #fff; box-shadow: 0 0 2px #000; transform: rotate(45deg); }
+#hitmarker::after { transform: rotate(-45deg); }
+#hitmarker.show { animation: hitmark .18s ease-out; }
+#hitmarker.crit { width: 30px; height: 30px; margin: -15px 0 0 -15px; animation-duration: .3s; }
+#hitmarker.crit::before, #hitmarker.crit::after { left: 14px; width: 3px; height: 30px; background: #ff3a3a; }
+@keyframes hitmark { from { opacity: 1; transform: scale(1.3); } to { opacity: 0; transform: scale(1); } }
+
+#banner { position: fixed; top: 30%; width: 100%; text-align: center; font-size: 56px; font-weight: 900; letter-spacing: 4px; text-shadow: 0 4px 12px #000; opacity: 0; transition: opacity .4s; pointer-events: none; z-index: 6; }
+#banner.show { opacity: 1; }
+
+#overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #000a; z-index: 10; }
+#overlay.hidden { display: none; }
+.panel { text-align: center; background: #1c1b22ee; padding: 32px 48px; border-radius: 16px; border: 2px solid #ffa24d; }
+.panel h1 { margin: 0 0 8px; font-size: 48px; color: #ffa24d; letter-spacing: 3px; }
+.controls { margin: 20px 0; line-height: 1.8; opacity: .9; }
+button { font-size: 20px; font-weight: 800; padding: 12px 36px; border: 0; border-radius: 10px; background: #ffa24d; color: #222; cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+.map-pick { margin: 0 0 16px; font-weight: 700; }
+.map-pick select { margin-left: 8px; font: inherit; padding: 4px 10px; border-radius: 8px; border: 2px solid #ffa24d; background: #2a2833; color: #fff; }
+#credits { position: fixed; bottom: 8px; right: 12px; font-size: 12px; opacity: .6; z-index: 5; }

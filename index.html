@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" />
+    <title>Street Brawl</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="hud">
+      <div class="bar-wrap">
+        <div class="label">HP</div>
+        <div class="bar"><div id="hp-fill"></div></div>
+      </div>
+      <div id="stats">Wave <span id="wave">1</span> &nbsp;|&nbsp; Kills <span id="kills">0</span> &nbsp;|&nbsp; Enemies <span id="left">0</span></div>
+    </div>
+    <div id="labels"></div>
+    <div id="mode"><b>FISTS</b></div>
+    <div id="grenades"><b>GRENADES</b> 3</div>
+    <div id="crosshair"></div>
+    <div id="hitmarker"></div>
+    <div id="banner"></div>
+    <div id="overlay">
+      <div class="panel">
+        <h1 id="title">STREET BRAWL</h1>
+        <p id="subtitle">Survive the waves. Knock them all out.</p>
+        <div class="controls">
+          <div><b>Mouse</b> look around &nbsp;·&nbsp; <b>Wheel</b> / <b data-key="KeyQ">Q</b> / <b>1</b>·<b>2</b>·<b>3</b>·<b>4</b> switch fists → katana → pistol → uzi</div>
+          <div><b data-keys="KeyW,KeyA,KeyS,KeyD">WASD</b> / <b>Arrows</b> move</div>
+          <div><b>Left click</b> / <b data-key="KeyJ">J</b> punch · slash (combo) · shoot (hold) with a gun</div>
+          <div><b>Right click</b> kick (fists, katana) · aim / zoom (guns, hold) &nbsp;·&nbsp; <b data-key="KeyK">K</b> kick &nbsp;·&nbsp; <b data-key="KeyR">R</b> reload</div>
+          <div><b data-key="KeyG">G</b> / <b>Middle click</b> grenade (hold to aim the arc, release to throw)</div>
+          <div><b>Space</b> jump &nbsp;·&nbsp; <b>Shift</b> tap: dodge roll (invincible) · hold: sprint &nbsp;·&nbsp; <b>Ctrl</b> crouch (hold)</div>
+          <div><b>Esc</b> pause</div>
+        </div>
+        <div class="map-pick">Map <select id="map-select"></select></div>
+        <button id="start">Loading…</button>
+      </div>
+    </div>
+    <div id="credits">Models: Quaternius (CC0) via poly.pizza · "Katana" by dook (CC-BY 3.0) via poly.pizza · "Hand grenade" by CreativeTrio (CC0) via poly.pizza · Animations: "Universal Animation Library" by Quaternius (CC-BY)</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
